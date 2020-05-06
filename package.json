@@ -20,6 +20,11 @@
     "jasmine-core": "^3.5.0",
     "karma": "^5.0.4",
     "karma-chrome-launcher": "^3.1.0",
-    "karma-jasmine": "^3.1.1"
+    "karma-jasmine": "^3.1.1",
+    "prettier": "^2.0.5"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5"
   }
 }
