@@ -18,7 +18,7 @@
   - Brickorna har färkodning (1-1 mellan färg - tal)
   - Är nya om nytt spel startas med "new game"-knapp
 - Vi kan använda pilarna:
-  - Ny bricka med 2 slumpas ut på spelplanen till tom ruta
+  - Ny bricka med 2 (sannolikt) eller 4 (osannolikt) slumpas ut på spelplanen till tom ruta
   - Högst två brickor på samma rad eller kolumn slås ihop per drag
     - 2222-> => --44
     - 2228-> => -248
