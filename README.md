@@ -13,8 +13,7 @@
   - som uppdateras för varje drag när poängsumman för nuvarande spel paserar bästa resultat
 - Två initiala sifferrutor
   - Slumpmässig placering
-  - Antingen två tvåor, eller
-  - En fyra, en tvåa, men endast sällan
+  - I fallande sannolikhetsordning, 2,2, 2,4 eller 4,4
   - Brickorna har färkodning (1-1 mellan färg - tal)
   - Är nya om nytt spel startas med "new game"-knapp
 - Vi kan använda pilarna:

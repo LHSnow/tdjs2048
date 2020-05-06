@@ -28,7 +28,7 @@ describe('tabell', () => {
       expect(true).toBe(true);
     });
 
-    fit('stigande', () => {
+    it('stigande', () => {
       console.log('3');
       expect(true).toBe(true);
     });
