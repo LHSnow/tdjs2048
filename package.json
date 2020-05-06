@@ -4,7 +4,7 @@
   "description": "2048 game",
   "main": "index.js",
   "scripts": {
-    "test": "karma start"
+    "test": "karma start karma.conf.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
     "karma": "^5.0.4",
     "karma-chrome-launcher": "^3.1.0",
     "karma-jasmine": "^3.1.1",
+    "karma-jasmine-html-reporter": "^1.5.3",
     "prettier": "^2.0.5"
   },
   "prettier": {
