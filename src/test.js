@@ -1,4 +1,4 @@
-describe('tabell', () => {
+xdescribe('tabell', () => {
   console.log('a');
 
   beforeAll(() => {
