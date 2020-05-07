@@ -25,12 +25,9 @@ function Spelplan() {
   };
 
   this.flyttaVänster = () => {
-    this.plan = [
-      [4, 2, 0, 0],
-      [4, 2, 0, 0],
-      [2, 4, 0, 0],
-      [2, 4, 0, 0],
-    ];
+    this.plan.map((rad) => rad.reverse());
+    this.flyttaHöger();
+    this.plan.map((rad) => rad.reverse());
   };
 
   this.flyttaRadHöger = (rad) => {
@@ -40,6 +37,30 @@ function Spelplan() {
 
   this.kollideraVänster = () => {
     this.plan = this.plan.map((rad) => this.kollideraRadVänster(rad));
+  };
+
+  this.utförDrag = (riktning) => {
+    this.flyttaVänster();
+    const nuvarandePlan = [...this.plan];
+    this.kollideraVänster();
+
+    return this.beräknaPoäng(nuvarandePlan);
+  };
+
+  this.beräknaPoäng = (före) => {
+    return this.plan
+      .map((radEfter, i) => this.beräknaRadPoäng(före[i], radEfter))
+      .reduce((acc, curr) => acc + curr);
+  };
+
+  this.beräknaRadPoäng = (före, efter) => {
+    let poäng = 0;
+    for (let i = 0; i < före.length; i++) {
+      if (efter[i] > före[i]) {
+        poäng += efter[i];
+      }
+    }
+    return poäng;
   };
 
   this.kollideraRadVänster = (rad) => {

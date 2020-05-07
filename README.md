@@ -12,6 +12,12 @@
 - Det finns ett bästa resultat-räknare
   - som sparar det bästa poäng spelaren har uppnått
   - som uppdateras för varje drag när poängsumman för nuvarande spel paserar bästa resultat
+- Ett drag är
+  1. Flytt i en riktning
+  2. Kollisionshantering
+  3. Beräkna poäng
+  4. Slumpa ny bricka
+  5. Kontroll om spel är slut
 - Två initiala sifferrutor
   - Slumpmässig placering
   - I fallande sannolikhetsordning, 2,2, 2,4 eller 4,4
