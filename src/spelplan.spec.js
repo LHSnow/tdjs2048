@@ -34,6 +34,8 @@ describe('Spelplan', () => {
     ]);
   });
 
+  it('kan visa lediga celler', () => {});
+
   function outOfBounds(plats, värde) {
     it(`Ex: ${plats.rad},${plats.kolumn} = ${värde}`, () => {
       expect(spelplan.plan).toEqual([
@@ -64,17 +66,6 @@ describe('Spelplan', () => {
         [0, 2, 0, 4],
         [2, 0, 4, 0],
       ];
-    });
-
-    it('flytt höger flyttar brickor så långt till höger som möjligt', () => {
-      spelplan.flyttaHöger();
-
-      expect(spelplan.plan).toEqual([
-        [0, 0, 4, 2],
-        [0, 0, 4, 2],
-        [0, 0, 2, 4],
-        [0, 0, 2, 4],
-      ]);
     });
 
     it('flytt vänster flyttar brickor så långt till vänster som möjligt', () => {
@@ -162,6 +153,106 @@ describe('Spelplan', () => {
 
     it('Jämför poäng rad för rad', () => {
       expect(spelplan.beräknaRadPoäng([2, 2, 2, 2], [4, 4, 0, 0])).toBe(8);
+    });
+  });
+
+  it('skall roteras 90 grader', () => {
+    spelplan.plan = [
+      [1, 2, 3, 4],
+      [5, 6, 7, 8],
+      [9, 10, 11, 12],
+      [13, 14, 15, 16],
+    ];
+
+    spelplan.roteraMedsols(1);
+
+    expect(spelplan.plan).toEqual([
+      [13, 9, 5, 1],
+      [14, 10, 6, 2],
+      [15, 11, 7, 3],
+      [16, 12, 8, 4],
+    ]);
+  });
+
+  describe('Exempeldrag', () => {
+    beforeEach(() => {
+      spelplan.plan = [
+        [2, 0, 0, 2],
+        [4, 16, 8, 2],
+        [2, 64, 32, 4],
+        [1024, 1024, 64, 0],
+      ];
+    });
+
+    it('vänster', () => {
+      spelplan.utförDrag('vänster');
+      expect(spelplan.plan).toEqual([
+        [4, 0, 0, 0],
+        [4, 16, 8, 2],
+        [2, 64, 32, 4],
+        [2048, 64, 0, 0],
+      ]);
+    });
+
+    it('höger', () => {
+      spelplan.utförDrag('höger');
+      expect(spelplan.plan).toEqual([
+        [0, 0, 0, 4],
+        [4, 16, 8, 2],
+        [2, 64, 32, 4],
+        [0, 0, 2048, 64],
+      ]);
+    });
+
+    it('upp', () => {
+      spelplan.utförDrag('upp');
+      expect(spelplan.plan).toEqual([
+        [2, 16, 8, 4],
+        [4, 64, 32, 4],
+        [2, 1024, 64, 0],
+        [1024, 0, 0, 0],
+      ]);
+    });
+
+    it('ner', () => {
+      spelplan.utförDrag('ner');
+      expect(spelplan.plan).toEqual([
+        [2, 0, 0, 0],
+        [4, 16, 8, 0],
+        [2, 64, 32, 4],
+        [1024, 1024, 64, 4],
+      ]);
+    });
+
+    describe('Högst två ihopslagningar på samma rad per drag', () => {
+      beforeEach(() => {
+        spelplan.plan = [
+          [2, 2, 4, 8],
+          [4, 0, 4, 4],
+          [16, 16, 16, 16],
+          [32, 16, 16, 32],
+        ];
+      });
+
+      it('vid drag till vänster', () => {
+        spelplan.utförDrag('vänster');
+        expect(spelplan.plan).toEqual([
+          [4, 4, 8, 0],
+          [8, 4, 0, 0],
+          [32, 32, 0, 0],
+          [32, 32, 32, 0],
+        ]);
+      });
+
+      it('vid drag till höger', () => {
+        spelplan.utförDrag('höger');
+        expect(spelplan.plan).toEqual([
+          [0, 4, 4, 8],
+          [0, 0, 4, 8],
+          [0, 0, 32, 32],
+          [0, 32, 32, 32],
+        ]);
+      });
     });
   });
 });

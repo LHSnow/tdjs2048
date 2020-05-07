@@ -1,6 +1,6 @@
 # tdjs2048
 
-## Speldiskussion
+## Speldiskussionn
 
 - En Spelplan
   - 4x4

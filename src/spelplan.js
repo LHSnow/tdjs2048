@@ -20,31 +20,62 @@ function Spelplan() {
     this.plan[plats.rad][plats.kolumn] = värde;
   };
 
-  this.flyttaHöger = () => {
-    this.plan = this.plan.map((rad) => this.flyttaRadHöger(rad));
+  this.ledigaCeller = () => {
+    const lediga = [];
+    this.plan.forEach((rad, i) => {
+      rad.forEach((cell, j) => {
+        if (cell === 0) {
+          lediga.push({ rad: i, kolumn: j });
+        }
+      });
+    });
+
+    return lediga;
   };
 
   this.flyttaVänster = () => {
-    this.plan.map((rad) => rad.reverse());
-    this.flyttaHöger();
-    this.plan.map((rad) => rad.reverse());
+    this.plan = this.plan.map((rad) => this.flyttaRadVänster(rad));
   };
 
-  this.flyttaRadHöger = (rad) => {
+  this.flyttaRadVänster = (rad) => {
     const ingaNollor = rad.filter((cell) => cell > 0);
-    return padLeftWithZero(ingaNollor);
+    return padRightWithZero(ingaNollor);
   };
 
   this.kollideraVänster = () => {
     this.plan = this.plan.map((rad) => this.kollideraRadVänster(rad));
   };
 
+  const ANTAL_ROTATIONER = { vänster: 0, ner: 1, höger: 2, upp: 3 };
+
   this.utförDrag = (riktning) => {
+    this.roteraMedsols(ANTAL_ROTATIONER[riktning]);
+
     this.flyttaVänster();
     const nuvarandePlan = [...this.plan];
     this.kollideraVänster();
 
+    this.roteraMedsols((4 - ANTAL_ROTATIONER[riktning]) % 4);
+
     return this.beräknaPoäng(nuvarandePlan);
+  };
+
+  this.möjligtDrag = (riktning) => {
+    const save = [...this.plan];
+    this.utförDrag(riktning);
+    if (!save.equals(this.plan)) {
+      this.plan = save;
+      return true;
+    }
+    return false;
+  };
+
+  this.roteraMedsols = (antalRotationer) => {
+    for (i = 0; i < antalRotationer; i++) {
+      this.plan = this.plan[0].map((val, index) =>
+        this.plan.map((row) => row[index]).reverse()
+      );
+    }
   };
 
   this.beräknaPoäng = (före) => {
@@ -79,7 +110,7 @@ function Spelplan() {
   };
 }
 
-const padLeftWithZero = (rad, radLängd = 4) => [
-  ...new Array(radLängd - rad.length).fill(0),
+const padRightWithZero = (rad, radLängd = 4) => [
   ...rad,
+  ...new Array(radLängd - rad.length).fill(0),
 ];
