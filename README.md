@@ -27,8 +27,8 @@
     - ex: 2+2 = 4
     - ex: 4+4 = 8
     - ex: 1024+1024 = 2048
-    - ex 2002 -> 0004
-    - ex: 0222 -> 0024
+    - ex 2002-> => 0004
+    - ex: 0222-> => 0024
   - Pil <riktning>(upp ner vänster höger): brickor flyttas längst ut till <riktning>
     - 0000 0000
       0200 (H) -> 0002
