@@ -1,6 +1,4 @@
-# tdjs2048
-
-## Speldiskussionn
+# TDJS 2048
 
 - En Spelplan
   - 4x4
@@ -23,7 +21,7 @@
   - I fallande sannolikhetsordning, 2,2, 2,4 eller 4,4
   - Brickorna har färkodning (1-1 mellan färg - tal)
   - Är nya om nytt spel startas med "new game"-knapp
-- Vi kan använda pilarna:
+- Vi kan använda pilarna för att göra ett drag:
   - Ny bricka med 2 (sannolikt) eller 4 (osannolikt) slumpas ut på spelplanen till tom ruta
   - Högst två brickor på samma rad eller kolumn slås ihop per drag
     - 2222-> => --44
