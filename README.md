@@ -1,46 +1,46 @@
 # TDJS 2048
 
-- En Spelplan
-  - 4x4
-  - Kan få nya brickor placerade
-- Det finns en poängräknare
-  - Initialt 0
-  - Poängen är summan av alla sammanslagna brickor
-  - En utslumpad bricka ger först poäng när den slås ihop med en annan
-- Det finns ett bästa resultat-räknare
-  - som sparar det bästa poäng spelaren har uppnått
-  - som uppdateras för varje drag när poängsumman för nuvarande spel paserar bästa resultat
-- Ett drag är
-  1. Flytt i en riktning
-  2. Kollisionshantering
-  3. Beräkna poäng
-  4. Slumpa ny bricka
-  5. Kontroll om spel är slut
-- Två initiala sifferrutor
-  - Slumpmässig placering
-  - I fallande sannolikhetsordning, 2,2, 2,4 eller 4,4
-  - Brickorna har färkodning (1-1 mellan färg - tal)
-  - Är nya om nytt spel startas med "new game"-knapp
-- Vi kan använda pilarna för att göra ett drag:
-  - Ny bricka med 2 (sannolikt) eller 4 (osannolikt) slumpas ut på spelplanen till tom ruta
-  - Högst två brickor på samma rad eller kolumn slås ihop per drag
-    - 2222-> => --44
-    - 2228-> => -248
-    - 2-28-> => --48
-  - Om två brickor med samma valör kolliderar blir de en ny bricka med summan av de två
-    - ex: 2+2 = 4
-    - ex: 4+4 = 8
-    - ex: 1024+1024 = 2048
-    - ex 2002-> => 0004
-    - ex: 0222-> => 0024
-  - Pil <riktning>(upp ner vänster höger): brickor flyttas längst ut till <riktning>
+- A Board
+  - Is 4x4
+  - Can have new tiles randomly placed
+- There is a scoring system
+  - Initial value 0
+  - The value is the sum of all combined tiles
+  - A random tile gives points only when combined with another
+- There is a high score system
+  - That shows the best score of the current player
+  - That is updated when the points reach above the previous high score
+- A move is
+  1. Move all tiles as far as possible a chosen direction (up down left right)
+  2. Collision handling
+  3. Points calculation
+  4. Spawn a new random tile 
+  5. Game end check
+- Two initial tiles
+  - With random placement
+  - In descending probability a combination of: 2,2; 2,4 or 4,4
+  - Tiles are colour coded (1-1 points-colour)
+  - Recreated on a new game
+- Moves are made with the arrow keys
+  - A new tile is spawned (either 2 or 4, where 2 is more common) randomly on an empty spot
+  - At most two tiles on the same row or column is combined into one, examples:
+    - 2222 R => --44
+    - 2228 R => -248
+    - 2-28 R => --48
+  - If two tiles of the same value collide, they create a tile with the sum of the two, examples
+    - 2+2 = 4
+    - 4+4 = 8
+    - 1024+1024 = 2048
+    - 2002 R => 0004
+    - 0222 R => 0024
+  - Arrow <direction>: all tiles are moved in <direction>, example (moving Right):  
     - 0000 0000
-      0200 (H) -> 0002
+      0200 0002
       0020 0002
       0000 0000
-- Spelet slutar
-  - Med vinst om en ruta har valören 2048
-  - Med slutpoäng om det inte går att göra en ihopslagning
-- Spelet har samma state
-  - om det öppnas i ny flik
-  - om det laddas om (page reload)
+- Game ends
+  - With victory if a tile has a value of 2048
+  - With a score if it is no longer possible to combine tiles doing a move
+- Game keeps its state
+  - when it is opened in a new tab
+  - when it is reloaded (page reload)
