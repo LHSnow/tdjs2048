@@ -17,20 +17,15 @@ describe('2048', () => {
     });
   });
 
-  describe('Scoring', () => {
-    beforeEach(() => {
-      board.state = [
-        [2, 2, 0, 0],
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
-      ];
-    });
-
-    it('increments score with collisions', () => {
-      game.move('left');
-      expect(game.score).toBe(4);
-    });
+  it('Scoring increments with collisions during moves', () => {
+    board.state = [
+      [2, 2, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+    ];
+    game.move('left');
+    expect(game.score).toBe(4);
   });
 
   describe('Placing of new tiles', () => {
